@@ -32,18 +32,17 @@ namespace Keep.DataService.Repository
             _contxt.SaveChanges();
         }
 
-        public void UpdateLink(int id)
+        public void UpdateLink(Link model)
         {
-            //var link = _contxt.Links.FirstOrDefault(x => x.Id == model.Id);
-            Link objlink = _contxt.Links.FirstOrDefault(p => p.Id == id);
-            if(objlink != null)
+            var link = _contxt.Links.Where(x => x.Id == model.Id).FirstOrDefault<Link>();
+            //Link objlink = _contxt.Links.FirstOrDefault(p => p.Id == model.Id);
+            if(link != null)
             {
-            //    objlink.Id = model.Id;
-            //    objlink.LinkName = model.LinkName;
-            //    objlink.Description = model.Description;
-            //    objlink.LinkUrl = model.LinkUrl;
+                link.LinkName = model.LinkName;
+                link.Description = model.Description;
+                link.LinkUrl = model.LinkUrl;
 
-                var entiy = _contxt.Entry(objlink);
+                var entiy = _contxt.Entry(link);
                 entiy.State = System.Data.Entity.EntityState.Modified;
                 _contxt.SaveChanges();
             }

@@ -43,11 +43,11 @@ namespace Keep.API.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateLink(int id)
+        public HttpResponseMessage UpdateLink(Link model)
         {
             try
             {
-                _db.UpdateLink(id);
+                _db.UpdateLink(model);
                 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
                 return response;
             }

@@ -12,7 +12,7 @@ namespace Keep.DataService.Repository
         List<Link> GetLinks();
         Link GetLinkById(int id);
         void AddLink(Link link);
-        void UpdateLink(int id /*Link link*/);
+        void UpdateLink(Link model);
         void DeleteLink(int id);
         
     }
