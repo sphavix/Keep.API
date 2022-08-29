@@ -34,7 +34,7 @@ namespace Keep.DataService.Repository
 
         public void UpdateLink(Link model)
         {
-            var link = _contxt.Links.Where(x => x.Id == model.Id).FirstOrDefault<Link>();
+            var link = _contxt.Links.Where(x => x.Id == model.Id).FirstOrDefault();
             //Link objlink = _contxt.Links.FirstOrDefault(p => p.Id == model.Id);
             if(link != null)
             {
@@ -42,8 +42,7 @@ namespace Keep.DataService.Repository
                 link.Description = model.Description;
                 link.LinkUrl = model.LinkUrl;
 
-                var entiy = _contxt.Entry(link);
-                entiy.State = System.Data.Entity.EntityState.Modified;
+                _contxt.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 _contxt.SaveChanges();
             }
         }
