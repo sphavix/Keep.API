@@ -6,46 +6,25 @@
 
 <br />
 <p>
-   <a href="@Url.Action("AddOrEdit", "Links")" class="btn btn-default"><i class="fa fa-plus"></i>Add Link</a>
+    <a href="@Url.Action("AddOrEdit", "Links")" class="btn btn-default"><i class="fa fa-plus"></i>Add Link</a>
 </p>
-<table class="table table-striped">
-    <thead class="table-heading">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkUrl)
-            </th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="card border-info text-dark">
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(model => item.LinkName)</h4>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <p class="card-text">@Html.DisplayFor(model => item.LinkUrl)</p>
+        </div>
+        <div></div>
+        <div class="card-footer">
+            <a href="@Url.Action("AddOrEdit", "Links", new { id = item.Id})" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a>
+            <a href="@Url.Action("Delete","Links", new { id = item.Id})" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
+        </div>
 
-@foreach (var item in Model) {
-   <tbody>
-       <tr>
-           <td>
-               @Html.DisplayFor(modelItem => item.LinkName)
-           </td>
-           <td>
-               @Html.DisplayFor(modelItem => item.Description)
-           </td>
-           <td>
-               @Html.DisplayFor(modelItem => item.LinkUrl)
-           </td>
-           <td>
-               <a href="@Url.Action("AddOrEdit", "Links", new { id = item.Id})" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-               <a href="@Url.Action("Delete","Links", new { id = item.Id})" class="btn btn-danger btn-sm"><i class="fa fa-trash-can"></i></a>
-               
-           </td>
-       </tr>
-   </tbody>
+    </div>
 }
-
-</table>
 @section scripts{
     <script>
         $(function () {
@@ -54,5 +33,5 @@
                 alertify.success(successmessage);
             }
         });
-    </script>    
+    </script>
 }
